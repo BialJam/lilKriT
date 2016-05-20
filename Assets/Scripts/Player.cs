@@ -2,17 +2,20 @@
 using System.Collections;
 
 [RequireComponent (typeof(PlayerController))]
+[RequireComponent (typeof(GunController))]
 public class Player : Entity {
 
 	PlayerController pc;
+	GunController gc;
 
 	void Awake(){
 		pc = GetComponent<PlayerController> ();
+		gc = GetComponent<GunController> ();
 	}
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -33,6 +36,12 @@ public class Player : Entity {
 			aimPoint = new Vector3 (aimPoint.x, transform.position.y, aimPoint.z);
 
 			transform.LookAt (aimPoint);
+		}
+
+		//shooting
+		if(Input.GetMouseButtonDown(0)){
+			print ("Shooting");
+			gc.Shoot ();
 		}
 	}
 		

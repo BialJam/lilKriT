@@ -26,8 +26,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void FixedUpdate(){
-		//if(movement.sqrMagnitude > 0){
-			rigidbody.MovePosition (transform.position + movement * Time.deltaTime);
-		//}
+		rigidbody.MovePosition (transform.position + movement * Time.deltaTime);
 	}
 }
