@@ -43,6 +43,11 @@ public class Player : Entity {
 			print ("Shooting");
 			gc.Shoot ();
 		}
+
+		//changing weapons
+		if(Input.mouseScrollDelta.y != 0){
+			gc.ScrollWeapon ((int)Input.mouseScrollDelta.y);
+		}
 	}
 		
 }

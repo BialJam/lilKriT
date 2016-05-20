@@ -10,7 +10,10 @@ public class Gun : MonoBehaviour {
 	public bool infiniteAmmo;
 	public int ammoLeft;
 
-	public Transform bulletSpawn;
+	public Transform[] bulletSpawn;
+
+	public float timeBetweenShots;
+	public float nextShotTime;
 
 	// Use this for initialization
 	void Start () {
@@ -25,8 +28,17 @@ public class Gun : MonoBehaviour {
 	virtual public void Shoot (){
 		if (!infiniteAmmo && ammoLeft == 0) {
 			return;
+		} else if(Time.time < nextShotTime){
+			return;
 		} else {
-			GameObject.Instantiate (projectile, bulletSpawn.position, transform.rotation);
+			foreach(Transform spawn in bulletSpawn){
+				GameObject.Instantiate (projectile, spawn.position, transform.rotation);
+				nextShotTime = Time.time + timeBetweenShots;
+
+				if(!infiniteAmmo){
+					ammoLeft--;
+				}
+			}
 		}
 	}
 }
