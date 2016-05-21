@@ -10,6 +10,8 @@ public class Tile : MonoBehaviour {
 	public float captureSpeed;
 	public float recaptureSpeed;
 
+	MeshRenderer mr;
+
 	public enum State
 	{
 		ownedByEnemy, neutral, ownedByPlayer
@@ -18,7 +20,11 @@ public class Tile : MonoBehaviour {
 	public State tileState = State.ownedByEnemy;
 
 	[Range (-1, 1)]
-	public float color;
+	public float captureState;
+
+	void Awake(){
+		mr = GetComponentInChildren<MeshRenderer> ();
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -28,46 +34,65 @@ public class Tile : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		UpdateBalance ();
+		UpdateState ();
 		UpdateColor ();
 	}
 
 	void OnTriggerEnter(Collider col){
 		if(col.CompareTag("Player")){
-			print ("Player entered this tile");
 			playerCount++;
 		}
 
 		if(col.gameObject.layer == LayerMask.NameToLayer("Enemy")){
-			print ("enemy entered this tile");
 			enemyCount++;
 		}
 	}
 
 	void OnTriggerExit(Collider col){
 		if(col.CompareTag("Player")){
-			print ("Player left this tile");
 			playerCount--;
 		}
 
 		if(col.gameObject.layer == LayerMask.NameToLayer("Enemy")){
-			print ("enemy left this tile");
 			enemyCount--;
 		}
 	}
 
 	public void UpdateBalance(){
-		int balance = playerCount - enemyCount;
-		color += balance * captureSpeed * Time.deltaTime;
+		if (tileState == State.ownedByPlayer) {
+			return;
+		}
 
-		color = Mathf.Clamp (color, -1f, 1f);
+		int balance = playerCount - enemyCount;
+		captureState += balance * captureSpeed * Time.deltaTime;
+
+		if(tileState == State.ownedByEnemy && balance == 0){
+			captureState -= captureSpeed * Time.deltaTime;
+		}
+
+		captureState = Mathf.Clamp (captureState, -1f, 1f);
+	}
+
+	public void UpdateState(){
+		if(captureState == -1f){
+			tileState = State.ownedByEnemy;
+		}
+
+		if(captureState == 1f){
+			tileState = State.ownedByPlayer;
+		}
+
+		if(tileState == State.ownedByEnemy && captureState >= 0f){
+			tileState = State.neutral;
+		}
 	}
 
 	public void UpdateColor(){
-		MeshRenderer mr = GetComponentInChildren<MeshRenderer> ();
-		if(color >= 0){
-			mr.material.color = Color.Lerp(Color.white, Color.green, color);
+		
+		if(captureState >= 0){
+			mr.material.color = Color.Lerp(Color.white, Color.green, captureState);
 		} else {
-			mr.material.color = Color.Lerp (Color.white, Color.red, -color);
+			mr.material.color = Color.Lerp (Color.white, Color.red, -captureState);
 		}
 
 	}

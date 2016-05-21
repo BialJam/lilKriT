@@ -4,16 +4,22 @@ using System.Collections;
 public class Gun : MonoBehaviour {
 
 	public GameObject projectile;
-	public int minDamage;
-	public int maxDamage;
+	//public int minDamage;
+	//public int maxDamage;
 
 	public bool infiniteAmmo;
+	public bool isAutomatic;
+	public bool canShoot;
+	//public int burstLength;
+
 	public int ammoLeft;
 
 	public Transform[] bulletSpawn;
 
 	public float timeBetweenShots;
 	public float nextShotTime;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -25,20 +31,37 @@ public class Gun : MonoBehaviour {
 	
 	}
 
-	virtual public void Shoot (){
+	virtual public void TriggerPulled (){
 		if (!infiniteAmmo && ammoLeft == 0) {
 			return;
-		} else if(Time.time < nextShotTime){
+		}
+		if(Time.time < nextShotTime && isAutomatic){
 			return;
-		} else {
-			foreach(Transform spawn in bulletSpawn){
-				GameObject.Instantiate (projectile, spawn.position, transform.rotation);
-				nextShotTime = Time.time + timeBetweenShots;
+		} 
+		if(!isAutomatic && !canShoot){
+			return;
+		}
+	
+		//actual shooting
+		foreach(Transform spawn in bulletSpawn){
+			GameObject.Instantiate (projectile, spawn.position, spawn.rotation);
 
-				if(!infiniteAmmo){
-					ammoLeft--;
-				}
+
+			if(!infiniteAmmo){
+				ammoLeft--;
 			}
 		}
+
+		if (isAutomatic) {
+			nextShotTime = Time.time + timeBetweenShots;
+		} else {
+			canShoot = false;
+		}
+
+		
+	}
+
+	virtual public void TriggerReleased(){
+		canShoot = true;
 	}
 }

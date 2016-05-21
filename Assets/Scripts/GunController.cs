@@ -29,24 +29,19 @@ public class GunController : MonoBehaviour {
 		gun.transform.SetParent (this.transform);
 	}
 
-	public void Shoot(){
-		equippedGun.Shoot ();
-		print ("Gc shooting");
+	public void TriggerPulled(){
+		equippedGun.TriggerPulled ();
+	}
+
+	public void TriggerReleased(){
+		equippedGun.TriggerReleased ();
 	}
 
 	public void ScrollWeapon(int scrollValue){
 		int weaponToEquip = equippedIndex + scrollValue;
-		weaponToEquip = Mathf.Abs (weaponToEquip);
+		weaponToEquip = weaponToEquip + guns.Length;
 		weaponToEquip %= guns.Length;
 
 		EquipGun (weaponToEquip);
-	}
-
-	public void NextGun(){
-
-	}
-
-	public void PreviousGun(){
-
 	}
 }

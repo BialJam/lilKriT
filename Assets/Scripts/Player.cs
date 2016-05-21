@@ -39,15 +39,23 @@ public class Player : Entity {
 		}
 
 		//shooting
-		if(Input.GetMouseButtonDown(0)){
-			print ("Shooting");
-			gc.Shoot ();
+		if (Input.GetMouseButton (0)) {
+			//print ("Shooting");
+			gc.TriggerPulled ();
+		} else if(Input.GetMouseButtonUp(0)) {
+			gc.TriggerReleased ();
 		}
 
 		//changing weapons
 		if(Input.mouseScrollDelta.y != 0){
 			gc.ScrollWeapon ((int)Input.mouseScrollDelta.y);
 		}
+	}
+
+	public void Heal(int amount){
+		HP += amount;
+
+		Mathf.Clamp (HP, 0, HPMax);
 	}
 		
 }

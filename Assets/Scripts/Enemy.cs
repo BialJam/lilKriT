@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent (typeof(NavMeshAgent))]
 public class Enemy : Entity {
 
+	public GameObject deathParticles;
+
 	public NavMeshAgent agent;
 
 	public Player player;
@@ -38,11 +40,22 @@ public class Enemy : Entity {
 		}
 	}
 
-	public bool IsInRange(){
+	public virtual bool IsInRange(){
 		if(Vector3.SqrMagnitude(transform.position - player.transform.position) > attackRange * attackRange){
 			return false;
 		} else {
 			return true;
 		}
+	}
+
+	public virtual void Attack(){
+
+	}
+
+	public override void Die ()
+	{
+		GameObject particles = GameObject.Instantiate (deathParticles, transform.position, transform.rotation) as GameObject;
+		Destroy (particles, 1.0f);
+		Destroy (this.gameObject);
 	}
 }

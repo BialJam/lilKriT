@@ -11,16 +11,6 @@ public class PlayerController : MonoBehaviour {
 		rigidbody = GetComponent<Rigidbody> ();
 	}
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	public void Move(Vector3 _movement){
 		movement = _movement;
 	}

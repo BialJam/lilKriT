@@ -13,8 +13,8 @@ public class Pistol : Gun {
 	
 	}
 
-	public override void Shoot ()
+	public override void TriggerPulled ()
 	{
-		base.Shoot ();
+		base.TriggerPulled ();
 	}
 }

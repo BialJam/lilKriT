@@ -8,16 +8,6 @@ public class Entity : MonoBehaviour {
 
 	public float movementSpeed;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	virtual public void Move(Vector3 _velocity){
 
 	}
@@ -26,12 +16,15 @@ public class Entity : MonoBehaviour {
 
 	}
 
-	virtual public void TakeHit(){
-
+	virtual public void TakeHit(RaycastHit hit, int damage){
+		TakeDamage (damage);
 	}
 
-	virtual public void TakeDamage(){
-
+	virtual public void TakeDamage(int damage){
+		HP -= damage;
+		if(HP <= 0){
+			Die ();
+		}
 	}
 
 
