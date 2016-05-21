@@ -56,6 +56,8 @@ public class Enemy : Entity {
 	{
 		GameObject particles = GameObject.Instantiate (deathParticles, transform.position, transform.rotation) as GameObject;
 		Destroy (particles, 1.0f);
-		Destroy (this.gameObject);
+		agent.enabled = false;
+		this.transform.position += Vector3.up * 100;
+		Destroy (this.gameObject, 0.5f);
 	}
 }

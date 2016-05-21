@@ -76,6 +76,10 @@ public class Turret : MonoBehaviour {
 	}
 
 	public void CheckTiles(){
+		if(tiles.Length == 0){
+			return;
+		}
+
 		int greenTiles = 0;
 		for(int i = 0; i < tiles.Length; i++){
 			if (tiles [i].tileState == Tile.State.ownedByPlayer) {

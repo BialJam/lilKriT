@@ -10,6 +10,9 @@ public class Tile : MonoBehaviour {
 	public float captureSpeed;
 	public float recaptureSpeed;
 
+	public Transform particleSpawn;
+	public GameObject captureParticles;
+
 	MeshRenderer mr;
 
 	public enum State
@@ -77,9 +80,11 @@ public class Tile : MonoBehaviour {
 		if(captureState == -1f){
 			tileState = State.ownedByEnemy;
 		}
-
-		if(captureState == 1f){
+			
+		if(captureState == 1f && tileState != State.ownedByPlayer){
 			tileState = State.ownedByPlayer;
+			GameObject go = GameObject.Instantiate (captureParticles, particleSpawn.position, particleSpawn.rotation) as GameObject;
+			Destroy (go, 2.0f);
 		}
 
 		if(tileState == State.ownedByEnemy && captureState >= 0f){

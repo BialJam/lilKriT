@@ -23,10 +23,11 @@ public class GunController : MonoBehaviour {
 			Destroy (equippedGun.gameObject);
 		}
 
-		Gun gun = Instantiate (guns [gunIndex], gunHold.position, transform.rotation) as Gun;
+		Gun gun = Instantiate (guns [gunIndex], gunHold.position, gunHold.rotation) as Gun;
 		equippedGun = gun;
 		equippedIndex = gunIndex;
-		gun.transform.SetParent (this.transform);
+		//gun.transform.SetParent (this.transform);
+		gun.transform.SetParent (gunHold);
 	}
 
 	public void TriggerPulled(){
@@ -43,5 +44,11 @@ public class GunController : MonoBehaviour {
 		weaponToEquip %= guns.Length;
 
 		EquipGun (weaponToEquip);
+	}
+
+	public void AimGun(Vector3 aimPoint){
+		if(Vector3.SqrMagnitude(aimPoint - transform.position) > 1.25f * 1.25f){
+			gunHold.LookAt(aimPoint);
+		}
 	}
 }

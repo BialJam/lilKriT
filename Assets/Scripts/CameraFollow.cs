@@ -3,25 +3,17 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour {
 
-	Player player;
+	public Player player;
+	Vector3 offset;
 
 	// Use this for initialization
 	void Start () {
-	
+		offset = transform.position - player.transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (player == null) {
-			return;
-		}
+		transform.position = player.transform.position + offset;
 	}
-
-	void FollowPlayer(){
-		if (player == null) {
-			return;
-		} else {
-
-		}
-	}
+		
 }

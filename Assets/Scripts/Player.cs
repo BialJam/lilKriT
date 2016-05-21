@@ -8,6 +8,8 @@ public class Player : Entity {
 	PlayerController pc;
 	GunController gc;
 
+	public Transform gunHold;
+
 	void Awake(){
 		pc = GetComponent<PlayerController> ();
 		gc = GetComponent<GunController> ();
@@ -36,6 +38,8 @@ public class Player : Entity {
 			aimPoint = new Vector3 (aimPoint.x, transform.position.y, aimPoint.z);
 
 			transform.LookAt (aimPoint);
+
+			gc.AimGun(aimPoint);
 		}
 
 		//shooting
