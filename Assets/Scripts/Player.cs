@@ -61,5 +61,11 @@ public class Player : Entity {
 
 		Mathf.Clamp (HP, 0, HPMax);
 	}
+
+	public override void Die ()
+	{
+		base.Die ();
+		Destroy (this.gameObject);
+	}
 		
 }
