@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ExitZone : MonoBehaviour {
 
-	//this will load next scene
+	public string loadedLevel;
 
 	// Use this for initialization
 	void Start () {
@@ -13,5 +14,9 @@ public class ExitZone : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void OnTriggerEnter(Collider col){
+		SceneManager.LoadScene (loadedLevel);
 	}
 }
