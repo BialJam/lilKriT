@@ -32,7 +32,8 @@ public class Gun : MonoBehaviour {
 	}
 
 	virtual public void TriggerPulled (){
-		if (!infiniteAmmo && ammoLeft == 0) {
+		//if (!infiniteAmmo && ammoLeft == 0) {
+		if (!infiniteAmmo && gc.ammo[gc.equippedIndex] == 0) {
 			return;
 		}
 		if(Time.time < nextShotTime && isAutomatic){
@@ -47,9 +48,12 @@ public class Gun : MonoBehaviour {
 			GameObject.Instantiate (projectile, spawn.position, spawn.rotation);
 
 
-			if(!infiniteAmmo){
-				ammoLeft--;
-			}
+
+		}
+
+		if(!infiniteAmmo){
+			//ammoLeft--;
+			gc.ammo[gc.equippedIndex] --;
 		}
 
 		if (isAutomatic) {

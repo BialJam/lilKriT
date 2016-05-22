@@ -7,12 +7,14 @@ public class Player : Entity {
 
 	PlayerController pc;
 	GunController gc;
+	GameManager manager;
 
 	public Transform gunHold;
 
 	void Awake(){
 		pc = GetComponent<PlayerController> ();
 		gc = GetComponent<GunController> ();
+		manager = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameManager>();
 	}
 
 	// Use this for initialization
@@ -65,6 +67,7 @@ public class Player : Entity {
 	public override void Die ()
 	{
 		base.Die ();
+		manager.OnPlayerDeath ();
 		Destroy (this.gameObject);
 	}
 		
