@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour {
 	public float timeBetweenShots;
 	public float nextShotTime;
 
-
+	public GunController gc;
 
 	// Use this for initialization
 	void Start () {

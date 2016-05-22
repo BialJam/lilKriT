@@ -14,6 +14,7 @@ public class Enemy : Entity {
 	public float nextPathCheck;
 
 	public float attackRange;
+	public EnemyMeleeAttack attackCollider;
 
 	void Awake(){
 		agent = GetComponent<NavMeshAgent> ();
@@ -28,6 +29,10 @@ public class Enemy : Entity {
 	void Update () {
 	
 		UpdatePath ();
+
+		if(IsInRange()){
+			Attack ();
+		}
 	}
 
 	public void UpdatePath(){
@@ -49,7 +54,7 @@ public class Enemy : Entity {
 	}
 
 	public virtual void Attack(){
-
+		attackCollider.Attack ();
 	}
 
 	public override void Die ()

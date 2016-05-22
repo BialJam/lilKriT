@@ -4,6 +4,7 @@ using System.Collections;
 public class GunController : MonoBehaviour {
 
 	public Gun[] guns;
+	public int[] ammo;
 	public Gun equippedGun;
 	public int equippedIndex;
 	public Transform gunHold;
@@ -25,6 +26,7 @@ public class GunController : MonoBehaviour {
 
 		Gun gun = Instantiate (guns [gunIndex], gunHold.position, gunHold.rotation) as Gun;
 		equippedGun = gun;
+		equippedGun.gc = this;
 		equippedIndex = gunIndex;
 		//gun.transform.SetParent (this.transform);
 		gun.transform.SetParent (gunHold);
