@@ -1,13 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerUI.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\GameManager.cs" Line="21" Column="31" />
-      <File FileName="Assets\Scripts\Player.cs" Line="17" Column="92" />
+      <File FileName="Assets\Scripts\Turret.cs" Line="75" Column="47" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="61" Column="33" />
       <File FileName="Assets\Scripts\Credits.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Gun.cs" Line="56" Column="33" />
+      <File FileName="Assets\Scripts\Gun.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GunController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerUI.cs" Line="29" Column="57" />
+      <File FileName="Assets\Scripts\PlayerUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnemyGunner.cs" Line="76" Column="4" />
+      <File FileName="Assets\Scripts\MainMenu.cs" Line="38" Column="37" />
+      <File FileName="Assets\Scripts\ExitZone.cs" Line="20" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 [RequireComponent (typeof(PlayerController))]
 [RequireComponent (typeof(GunController))]
@@ -55,6 +56,10 @@ public class Player : Entity {
 		//changing weapons
 		if(Input.mouseScrollDelta.y != 0){
 			gc.ScrollWeapon ((int)Input.mouseScrollDelta.y);
+		}
+
+		if(Input.GetButtonDown("Cancel")){
+			SceneManager.LoadScene ("menu");
 		}
 	}
 

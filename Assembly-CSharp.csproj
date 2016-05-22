@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Gate.cs" />
      <Compile Include="Assets\Scripts\Gun.cs" />
      <Compile Include="Assets\Scripts\GunController.cs" />
+     <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Pickups\AmmoPickup.cs" />
      <Compile Include="Assets\Scripts\Pickups\HealthPickup.cs" />
      <Compile Include="Assets\Scripts\Pistol.cs" />

@@ -17,6 +17,9 @@ public class ExitZone : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider col){
-		SceneManager.LoadScene (loadedLevel);
+		if(col.gameObject.CompareTag("Player")){
+			SceneManager.LoadScene (loadedLevel);
+		}
+
 	}
 }

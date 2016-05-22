@@ -22,6 +22,10 @@ public class Turret : MonoBehaviour {
 
 	public GameObject turretBase;
 
+	public int burstLength;
+	public int burstRemaining;
+	public float burstCooldown;
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -60,13 +64,23 @@ public class Turret : MonoBehaviour {
 
 	public void Shoot(){
 		GameObject.Instantiate (projectile, projectileSpawn.position, projectileSpawn.rotation);
-		nextShotTime = Time.time + timeBetweenShots;
+		//nextShotTime = Time.time + timeBetweenShots;
+
+		burstRemaining--;
+
+		if (burstRemaining <= 0) {
+			nextShotTime = Time.time + burstCooldown;
+			burstRemaining = burstLength;
+		} else {
+			nextShotTime = Time.time + timeBetweenShots;
+		}
 	}
 
 	public void Heal(){
 		healRay.enabled = true;
 
 		nextShotTime = Time.time + timeBetweenHeals;
+		player.GetComponent<Player> ().Heal (10);
 
 		Invoke ("StopHealing", healTime);
 	}
